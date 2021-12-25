@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=l, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1> The list of users</h1>
+    <table id="userTable">
+
+
+    </table>
+
+</body>
+<script>
+    var userArray = JSON.parse(window.localStorage.getItem("user"));
+    var userTable = document.getElementById("userTable");
+    var tBody = document.createElement("tBody");
+    userArray.forEach(userJson => {
+        var tRow = document.createElement("tr");
+        var tColumn = document.createElement("td");
+        var txt = document.createTextNode(userJson.username);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+        tBody.appendChild(tRow);
+    });
+
+    userTable.appendChild(tBody);
+</script>
+
+</html>

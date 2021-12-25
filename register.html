@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="Username">Username<input type="text" name="Username" id="Username"></label>
+        <label for="Password">Password<input type="password" name="Password" id="Password"></label>
+        <button id="register">Register</button>\
+
+    </form>
+    <script>
+        document.getElementById("register").addEventListener("click", function (e) {
+            e.preventDefault();
+            var username = document.getElementById("Username").value;
+
+            var password = document.getElementById("Password").value;
+            console.log(username, password)
+
+            var userJson = {};
+            userJson["username"] = username;
+            userJson["password"] = password;
+            console.log(userJson);
+            var exisistingUser = JSON.parse(window.localStorage.getItem("user"));
+            if (exisistingUser != null) {
+                exisistingUser.push(userJson);
+                window.localStorage.setItem("user", JSON.stringify(exisistingUser));
+            } else {
+                exisistingUser = [];
+                exisistingUser.push(userJson);
+                window.localStorage.setItem("user", JSON.stringify(exisistingUser));
+            }
+        });
+    </script>
+</body>
+
+</html>

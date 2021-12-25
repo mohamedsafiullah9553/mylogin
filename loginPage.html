@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<div id="result"></div>
+<style>
+    #result {
+        color: rgb(202, 29, 29);
+    }
+</style>
+<form>
+    <label for="Username">Username<input type="text" name="Username" id="Username"></label>
+    <label for="Password">Password<input type="password" name="Password" id="Password"></label>
+    <button id="Login">Login</button>
+
+</form>
+<a href="register.html"> Register </a>
+<script>
+
+    document.getElementById("Login").addEventListener("click", function (e) {
+        e.preventDefault();
+        var username = document.getElementById("Username").value;
+
+        var password = document.getElementById("Password").value;
+        console.log(username, password)
+        console.log(window.localStorage.getItem("user"));
+
+        var userArray = JSON.parse(window.localStorage.getItem("user"));
+
+        userArray.forEach(userJson => {
+            console.log(userJson, userJson.username, userJson.password);
+            if (username == userJson.username && password == userJson.password) {
+                console.log("username & password or correct");
+                window.location.replace("file:///D:/learning/project/loginApp/users.html");
+
+            }
+            else {
+
+                document.getElementById("result").innerHTML = "The  Username or Password is Incorrect"
+            }
+
+        });
+
+
+    });
+</script>
+
+<body>
+
+</body>
+
+</html>
