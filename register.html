@@ -10,27 +10,37 @@
 
 <body>
     <form>
-        <label for="Username">Username<input type="text" name="Username" id="Username"></label>
-        <label for="Password">Password<input type="password" name="Password" id="Password"></label>
-        <button id="register">Register</button>\
+        <label for="Username">Username<input type="text" name="Username" id="Username"></label></br>
+        <label for="Password">Password<input type="password" name="Password" id="Password"></label></br>
+        <label for="FirstName">First Name <input type="text" name="" id="FirstName"></label></br>
+        <label for="LastName">Last Name <input type="text" name="" id="LastName"></label></br>
+
+        <button id="register">Register</button>
 
     </form>
     <script>
         document.getElementById("register").addEventListener("click", function (e) {
             e.preventDefault();
             var username = document.getElementById("Username").value;
-
             var password = document.getElementById("Password").value;
             console.log(username, password)
+            var firstName = document.getElementById("FirstName").value;
+            var lastName = document.getElementById("LastName").value;
+            console.log(firstName, lastName);
 
             var userJson = {};
             userJson["username"] = username;
             userJson["password"] = password;
+            userJson["firstName"] = firstName;
+            userJson["lastName"] = lastName;
             console.log(userJson);
+
             var exisistingUser = JSON.parse(window.localStorage.getItem("user"));
             if (exisistingUser != null) {
                 exisistingUser.push(userJson);
                 window.localStorage.setItem("user", JSON.stringify(exisistingUser));
+
+
             } else {
                 exisistingUser = [];
                 exisistingUser.push(userJson);

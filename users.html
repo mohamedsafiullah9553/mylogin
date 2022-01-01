@@ -6,13 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=l, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 
 </head>
 
 <body>
     <h1> The list of users</h1>
     <table id="userTable">
-
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
 
     </table>
 
@@ -25,6 +40,16 @@
         var tRow = document.createElement("tr");
         var tColumn = document.createElement("td");
         var txt = document.createTextNode(userJson.username);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(userJson.firstName);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(userJson.lastName);
         tColumn.appendChild(txt);
         tRow.appendChild(tColumn);
         tBody.appendChild(tRow);
