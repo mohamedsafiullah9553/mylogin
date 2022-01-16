@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            display: block;
+        }
+
+        .product {
+            width: 200px;
+        }
+
+        .columns {
+            display: flex;
+        }
+
+        .product img {
+            width: 100%;
+        }
+
+        .product .columns {
+            width: 100%;
+        }
+
+        .product .columns div {
+            width: 50%;
+        }
+    </style>
+    <script>
+        function buyButtonClicked(company, price) {
+            console.log("inside buyButtonClicked()", company, price);
+
+            var orderJson = {}
+            orderJson["company"] = company;
+            orderJson["price"] = price;
+
+            window.localStorage.setItem("order", JSON.stringify(orderJson));
+
+            var url = window.location.href.replace("products.html", "order.html");
+            window.location.href = url;
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Products</li>
+                <li>users</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside>
+            <img src="images/logo.png" alt="" width="100px">
+        </aside>
+        <article>
+            <h1>Products</h1>
+            <section>
+                <div class="product">
+                    <img src="images/suzuki.jpg" alt="">
+                    <div class="columns">
+                        <div class="title">Suzuki</div>
+                        <div class="price">&#x20B9;5,00,000</div>
+                        <button onclick="buyButtonClicked('Suzuki', 500000)">Buy</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="images/hyundai.jpg" alt="">
+                    <div class="columns">
+                        <div class="title">Hyudai</div>
+                        <div class="price">&#x20B9;7,00,000</div>
+                        <button onclick="buyButtonClicked('Hyudai',700000)">Buy</button>
+
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
