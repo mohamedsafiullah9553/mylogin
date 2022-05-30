@@ -18,6 +18,8 @@
         </div>
     </div>
     <form>
+        <label for="FirstName">First Name <input type="text" name="" id="FirstName"></label></br>
+        <label for="LastName">Last Name <input type="text" name="" id="LastName"></label></br>
         <div><label for="">Address </label><input type="text" id="address"></div>
         <div><label for="">Pincode </label><input type="text" id="pincode"></div>
         <label for="">State</label>
@@ -28,8 +30,9 @@
             <option value="Andhara">Andhara</option>
             <option value="Karnataka">Karnataka</option>
         </select>
+        <label for="Contact">Contact<input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="contact"></label>
 
-
+        <div><button id="done">Done</button></div>
     </form>
 
 </body>
@@ -39,8 +42,45 @@
     document.getElementById("title").innerHTML = orderJson["company"];
     document.getElementById("price").innerHTML = orderJson["price"];
     var picture = "images/" + orderJson["company"].toLowerCase() + ".jpg";
+    console.log(picture);
+    document.getElementById("picture").src = picture;
 
-    console.log(picture); document.getElementById("picture").src = picture;
+    document.getElementById("done").addEventListener("click", function (e) {
+        e.preventDefault();
+        var firstName = document.getElementById("FirstName").value;
+        var lastName = document.getElementById("LastName").value;
+        var address = document.getElementById("address").value;
+        var pincode = document.getElementById("pincode").value;
+        console.log(firstName, lastName, address, pincode);
+        var state = document.getElementById("state").value;
+        console.log(state);
+        var contact = document.getElementById("contact").value;
+        console.log(contact);
+
+        var orderJson = {};
+
+        orderJson["firstName"] = firstName;
+        orderJson["lastName"] = lastName;
+        orderJson["address"] = address;
+        orderJson["pincode"] = pincode;
+        orderJson["state"] = state;
+        orderJson["contact"] = contact;
+        console.log(orderJson);
+
+        var orderArray = JSON.parse(window.localStorage.getItem("orderArray"));
+        console.log(orderArray);
+        if (orderArray != null) {
+            orderArray.push(orderJson);
+            window.localStorage.setItem("orderArray", JSON.stringify(orderArray));
+            window.location.replace("file:///D:/learning/project/loginApp/theListOfOrders.html");
+        } else {
+            orderArray = [];
+            orderArray.push(orderJson);
+            window.localStorage.setItem("orderArray", JSON.stringify(orderArray));
+        }
+    });
+
+
 
 </script>
 
