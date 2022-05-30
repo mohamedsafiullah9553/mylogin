@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=l, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1> The list of orders</h1>
+    <table id="orderTable">
+        <thead>
+            <tr>
+
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>State</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+
+    </table>
+
+</body>
+<script>
+    var orderArray = JSON.parse(window.localStorage.getItem("orderArray"));
+    console.log(orderArray);
+    var orderTable = document.getElementById("orderTable");
+    var tBody = document.createElement("tBody");
+    orderArray.forEach(orderJson => {
+        console.log(orderJson.lastName);
+        var tRow = document.createElement("tr");
+        var tColumn = document.createElement("td");
+        var txt = document.createTextNode(orderJson.firstName);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(orderJson.lastName);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(orderJson.address);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+        tBody.appendChild(tRow);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(orderJson.pincode);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+        tBody.appendChild(tRow);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(orderJson.state);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+        tBody.appendChild(tRow);
+
+        tColumn = document.createElement("td");
+        txt = document.createTextNode(orderJson.contact);
+        tColumn.appendChild(txt);
+        tRow.appendChild(tColumn);
+        tBody.appendChild(tRow)
+
+
+    });
+
+    orderTable.appendChild(tBody);
+</script>
+
+</html>
